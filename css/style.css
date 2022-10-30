@@ -3,8 +3,9 @@ html {
 }
 
 canvas {
-    border: 1px solid red;
+    border: 3px solid black;
     background-color: white;
+    background-image: url(../images/new\ track\ 1.png);
 }
 
 body {
@@ -12,4 +13,42 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+.arrow-keys {
+    width: 200px;
+    
+}
+
+/* .game-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+#start-now {
+    margin-top: 20px;
+    margin-right: 800px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    color: white;
+    background-color: red;
+}
+
+.desc {
+    color: white;
+    font-size: 20px;
+}
+
+.arrow-desc {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    
 }
