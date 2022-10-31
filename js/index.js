@@ -8,17 +8,18 @@ window.onload = () => {
     function startGame() {
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-
+        document.querySelector()
 
 
         const imgTrack = new Image();
         imgTrack.src = 'images/road.png';
         ctx.drawImage(imgTrack, 0, 0, 1015, 710)
 
+
         let xCord = 200;
-        let yCord = 620;
+        let yCord = 400;
        const imgCar = new Image();
-       imgCar.src = 'images/F1_car.png'
+       imgCar.src = '../images/F1_car.png'
       ctx.drawImage(imgCar, xCord, yCord, 30, 60)
       window.addEventListener('keydown', function(event) {
         ctx.clearRect(0, 0, 1015, 710)
