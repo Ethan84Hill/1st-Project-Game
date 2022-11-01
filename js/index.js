@@ -55,15 +55,19 @@ window.onload = () => {
     function canvasBoundaries(car) {
         if (car.xCord >= w) {
             car.vx = 0
+            car.ax = 0
         }
         if (car.xCord <= 0) {
             car.vx = 0
+            car.ax = 0
         }
         if (car.yCord >= h) {
             car.vy = 0
+            car.ay = 0
         }
         if (car.yCord <= 0) {
             car.vy = 0
+            car.ay = 0
         }
     }
 
