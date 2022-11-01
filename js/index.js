@@ -210,7 +210,8 @@ window.onload = () => {
              f1Car.ay = Math.sin(f1Car.r) * 0.001;
             } 
           ctx.globalAlpha = 1
-          lapTime()
+          startTimer();
+          //lapTime();
           ctx.globalAlpha = 1
           f1Car.draw();
           ctx.globalAlpha = 0
@@ -244,28 +245,34 @@ window.onload = () => {
         ctx.fillStyle = 'white';
         ctx.font = '40px sans-serif';
         ctx.fillText('Lap Complete!', w/3, 100);
+        stopTimer();
       }
     
-      let startTime;
+      let seconds = 0;
+      let interval = null;
 
       function lapTime() {
-        let elapsed = parseInt((new Date() - startTime) / 1000);
+        seconds++;
+
+        let hrs = Math.floor(seconds / 3600);
+        let mins = Math.floor((seconds - (hrs * 3600)) / 60);
+        let secs = seconds % 60;
+    
+        if (secs < 10) secs = '0' + secs;
+        if (mins < 10) mins = '0' + mins;
+        if (hrs < 10) hrs = '0' + hrs;
 
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = 'white';
         ctx.font = '20px sans-serif';
-        ctx.fillText(elapsed + ' secs', 880, 30);
+        ctx.fillText(`${hrs}:${mins}:${secs}`, 880, 30);
         ctx.restore();
       }
 
-
-    //   lapRace = setInterval(lapDone, 25);
-
-    //   let startTime = new Date().getTime();
-    //   let time = 0
-    //   let lapRace;
-
-    //   function timer() {
-    //     time = parseInt((new Date().getTime() - startTime) / 1000, 10)
-    //   }
+      function startTimer() {
+        interval = setInterval(lapTime(), 1000)
+      }
+      function stopTimer() {
+        clearInterval(interval)
+      }
