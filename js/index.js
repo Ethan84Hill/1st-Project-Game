@@ -123,6 +123,7 @@ window.onload = () => {
 
     function startGame() {
         driveloop()
+        lapTime()
     }
 
     function updatePosition(car) {
@@ -162,6 +163,7 @@ window.onload = () => {
             car.vy = 0;
             car.vx = 0;
             lapDone();
+            // lapTime();
           }
     }
 
@@ -207,8 +209,11 @@ window.onload = () => {
             f1Car.ax = Math.cos(f1Car.r) * 0.001;
              f1Car.ay = Math.sin(f1Car.r) * 0.001;
             } 
-        
+          ctx.globalAlpha = 1
+          lapTime()
+          ctx.globalAlpha = 1
           f1Car.draw();
+          ctx.globalAlpha = 0
           finishLine.draw();
           railOne.draw();
           railTwo.draw();
@@ -232,9 +237,35 @@ window.onload = () => {
       function lapDone() {
         window.cancelAnimationFrame(race);
 
+        ctx.globalAlpha = 0.5
         ctx.fillStyle = 'black';
         ctx.fillRect(0, 0, 1015, 710);
+        ctx.globalAlpha = 1
         ctx.fillStyle = 'white';
-        ctx.font = '40px sans-serif'
-        ctx.fillText('Lap Complete', w/3, 100)
+        ctx.font = '40px sans-serif';
+        ctx.fillText('Lap Complete!', w/3, 100);
       }
+    
+      let startTime;
+
+      function lapTime() {
+        let elapsed = parseInt((new Date() - startTime) / 1000);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.fillStyle = 'white';
+        ctx.font = '20px sans-serif';
+        ctx.fillText(elapsed + ' secs', 880, 30);
+        ctx.restore();
+      }
+
+
+    //   lapRace = setInterval(lapDone, 25);
+
+    //   let startTime = new Date().getTime();
+    //   let time = 0
+    //   let lapRace;
+
+    //   function timer() {
+    //     time = parseInt((new Date().getTime() - startTime) / 1000, 10)
+    //   }
