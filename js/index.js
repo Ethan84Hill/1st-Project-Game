@@ -92,7 +92,26 @@ window.onload = () => {
                 ctx.fillRect(773, 302, 325, 1)
             }
         }
-
+        let finishLine = {
+            x: 300,
+            y: 588,
+            w: 3,
+            h: 98,
+            draw: function () {
+                ctx.fillStyle = 'white'
+                ctx.fillRect(300, 588, 3, 98)
+            }
+        }
+        let antiCheat = {
+            x: 290,
+            y: 588,
+            w: 1,
+            h: 95,
+            draw: function () {
+                ctx.fillStyle = 'black'
+                ctx.fillRect(290, 588, 1, 95)
+            }
+        }
 
        let race;
        const frameRate = 1 / 60;
@@ -135,10 +154,10 @@ window.onload = () => {
 
     function startFinishLineBoundaries(car, finish) {
         if (
-            car.xCord < finish.xCord + finish.width &&
-            car.xCord + car.width > finish.xCord &&
-            car.yCord < finish.yCord + finish.height &&
-            car.yCord + car.height > finish.yCord
+            car.xCord < finish.x + finish.w &&
+            car.xCord + car.width > finish.x &&
+            car.yCord < finish.y + finish.h &&
+            car.yCord + car.height > finish.y
           ) {
             car.vy = 0;
             car.vx = 0;
@@ -189,22 +208,24 @@ window.onload = () => {
             } 
         
           f1Car.draw();
+          finishLine.draw();
           railOne.draw();
           railTwo.draw();
           railThree.draw();
           railFour.draw();
           railFive.draw();
           railSix.draw();
+          antiCheat.draw();
          updatePosition(f1Car)
          canvasBoundaries(f1Car)
+         railsBoundaries(f1Car, antiCheat)
          railsBoundaries(f1Car, railOne)
          railsBoundaries(f1Car, railTwo)
          railsBoundaries(f1Car, railThree)
          railsBoundaries(f1Car, railFour)
          railsBoundaries(f1Car, railFive)
          railsBoundaries(f1Car, railSix)
-         // railsBoundaries(f1Car, rails)
-         // startFinishLineBoundaries(f1Car, finish)
+         startFinishLineBoundaries(f1Car, finishLine)
       }
       
 
