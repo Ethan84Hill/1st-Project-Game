@@ -33,63 +33,63 @@ window.onload = () => {
         }
 
         let railOne = {
-            x: 130,
+            x: 160,
             y: 155,
-            w: 645,
+            w: 600,
             h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(130, 155, 645, 1)
+                ctx.fillRect(160, 155, 600, 1)
             }
         }
         let railTwo = {
             x: 485,
             y: 155,
             w: 1,
-            h: 420,
+            h: 400,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(485, 155, 1, 420)
+                ctx.fillRect(485, 155, 1, 400)
             }
         }
         let railThree = {
-            x: 130,
+            x: 150,
             y: 552,
-            w: 355,
+            w: 300,
             h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(130, 552, 355, 1)
+                ctx.fillRect(150, 552, 300, 1)
             }
         }
         let railFour = {
-            x: 490,
+            x: 500,
             y: 568,
-            w: 375,
+            w: 300,
             h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(490, 568, 375, 1)
+                ctx.fillRect(500, 568, 300, 1)
             }
         }
         let railFive = {
             x: 0,
             y: 338,
-            w: 325,
+            w: 300,
             h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(0, 338, 325, 1)
+                ctx.fillRect(0, 338, 300, 1)
             }
         }
         let railSix = {
             x: 773,
             y: 302,
-            w: 325,
+            w: 300,
             h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(773, 302, 325, 1)
+                ctx.fillRect(773, 302, 300, 1)
             }
         }
         let finishLine = {
@@ -109,7 +109,7 @@ window.onload = () => {
             h: 95,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(290, 588, 1, 95)
+                ctx.fillRect(290, 588, 1, 98)
             }
         }
 
@@ -161,6 +161,7 @@ window.onload = () => {
           ) {
             car.vy = 0;
             car.vx = 0;
+            lapDone();
           }
     }
 
@@ -235,5 +236,5 @@ window.onload = () => {
         ctx.fillRect(0, 0, 1015, 710);
         ctx.fillStyle = 'white';
         ctx.font = '40px sans-serif'
-        ctx.fillText('Lap Complete')
+        ctx.fillText('Lap Complete', w/3, 100)
       }
