@@ -33,62 +33,62 @@ window.onload = () => {
         }
 
         let railOne = {
-            x1: 130,
-            y1: 155,
-            w1: 645,
-            h1: 5,
+            x: 130,
+            y: 155,
+            w: 645,
+            h: 5,
             draw: function () {
-                ctx.fillStyle = 'yellow'
+                ctx.fillStyle = 'black'
                 ctx.fillRect(130, 155, 645, 5)
             }
         }
         let railTwo = {
-            x2: 485,
-            y2: 155,
-            w2: 5,
-            h2: 420,
+            x: 485,
+            y: 155,
+            w: 5,
+            h: 420,
             draw: function () {
-                ctx.fillStyle = 'pink'
+                ctx.fillStyle = 'black'
                 ctx.fillRect(485, 155, 5, 420)
             }
         }
         let railThree = {
-            x3: 130,
-            y3: 552,
-            w3: 355,
-            h3: 5,
+            x: 130,
+            y: 552,
+            w: 355,
+            h: 5,
             draw: function () {
-                ctx.fillStyle = 'blue'
+                ctx.fillStyle = 'black'
                 ctx.fillRect(130, 552, 355, 5)
             }
         }
         let railFour = {
-            x4: 490,
-            y4: 568,
-            w4: 375,
-            h4: 5,
+            x: 490,
+            y: 568,
+            w: 375,
+            h: 5,
             draw: function () {
-                ctx.fillStyle = 'purple'
+                ctx.fillStyle = 'black'
                 ctx.fillRect(490, 568, 375, 5)
             }
         }
         let railFive = {
-            x5: 0,
-            y5: 338,
-            w5: 325,
-            h5: 10,
+            x: 0,
+            y: 338,
+            w: 325,
+            h: 10,
             draw: function () {
-                ctx.fillStyle = 'red'
+                ctx.fillStyle = 'black'
                 ctx.fillRect(0, 338, 325, 10)
             }
         }
         let railSix = {
-            x6: 773,
-            y6: 302,
-            w6: 325,
-            h6: 8,
+            x: 773,
+            y: 302,
+            w: 325,
+            h: 8,
             draw: function () {
-                ctx.fillStyle = 'orange'
+                ctx.fillStyle = 'black'
                 ctx.fillRect(773, 302, 325, 8)
             }
         }
@@ -147,13 +147,13 @@ window.onload = () => {
 
     function railsBoundaries(car, rails) {
         if (
-            car.xCord < rails.xCord + rails.width &&
-            car.xCord + car.width > rails.xCord &&
-            car.yCord < rails.yCord + rails.height &&
-            car.yCord + car.height > rails.yCord
+            car.xCord < rails.x + rails.w &&
+            car.xCord + car.width > rails.x &&
+            car.yCord < rails.y + rails.h &&
+            car.yCord + car.height > rails.y
           ) {
-            car.vy *= -1;
-            car.vx *= -1;
+            car.vy *= -0.5;
+            car.vx *= -0.5;
           }
     }
 
@@ -175,8 +175,8 @@ window.onload = () => {
 
         if (keys[38]) {
             if (f1Car.ax >= 0 || f1Car.ay >= 0) 
-            {f1Car.ax = -(Math.cos(f1Car.r) * 0.0006);
-            f1Car.ay = -(Math.sin(f1Car.r) * 0.0006);
+            {f1Car.ax = -(Math.cos(f1Car.r) * 0.001);
+            f1Car.ay = -(Math.sin(f1Car.r) * 0.001);
         } else {
             f1Car.ax = 0
             f1Car.ay = 0
@@ -197,6 +197,12 @@ window.onload = () => {
           railSix.draw();
          updatePosition(f1Car)
          canvasBoundaries(f1Car)
+         railsBoundaries(f1Car, railOne)
+         railsBoundaries(f1Car, railTwo)
+         railsBoundaries(f1Car, railThree)
+         railsBoundaries(f1Car, railFour)
+         railsBoundaries(f1Car, railFive)
+         railsBoundaries(f1Car, railSix)
          // railsBoundaries(f1Car, rails)
          // startFinishLineBoundaries(f1Car, finish)
       }
