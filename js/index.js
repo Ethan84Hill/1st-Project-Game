@@ -32,6 +32,68 @@ window.onload = () => {
             }
         }
 
+        let railOne = {
+            x1: 130,
+            y1: 155,
+            w1: 645,
+            h1: 5,
+            draw: function () {
+                ctx.fillStyle = 'yellow'
+                ctx.fillRect(130, 155, 645, 5)
+            }
+        }
+        let railTwo = {
+            x2: 485,
+            y2: 155,
+            w2: 5,
+            h2: 420,
+            draw: function () {
+                ctx.fillStyle = 'pink'
+                ctx.fillRect(485, 155, 5, 420)
+            }
+        }
+        let railThree = {
+            x3: 130,
+            y3: 552,
+            w3: 355,
+            h3: 5,
+            draw: function () {
+                ctx.fillStyle = 'blue'
+                ctx.fillRect(130, 552, 355, 5)
+            }
+        }
+        let railFour = {
+            x4: 490,
+            y4: 568,
+            w4: 375,
+            h4: 5,
+            draw: function () {
+                ctx.fillStyle = 'purple'
+                ctx.fillRect(490, 568, 375, 5)
+            }
+        }
+        let railFive = {
+            x5: 0,
+            y5: 338,
+            w5: 325,
+            h5: 10,
+            draw: function () {
+                ctx.fillStyle = 'red'
+                ctx.fillRect(0, 338, 325, 10)
+            }
+        }
+        let railSix = {
+            x6: 773,
+            y6: 302,
+            w6: 325,
+            h6: 8,
+            draw: function () {
+                ctx.fillStyle = 'orange'
+                ctx.fillRect(773, 302, 325, 8)
+            }
+        }
+
+
        let race;
        const frameRate = 1 / 60;
         const frameDelay = frameRate * 1000;
@@ -127,6 +189,12 @@ window.onload = () => {
             } 
         
           f1Car.draw();
+          railOne.draw();
+          railTwo.draw();
+          railThree.draw();
+          railFour.draw();
+          railFive.draw();
+          railSix.draw();
          updatePosition(f1Car)
          canvasBoundaries(f1Car)
          // railsBoundaries(f1Car, rails)
