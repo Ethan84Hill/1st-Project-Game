@@ -228,4 +228,12 @@ window.onload = () => {
          startFinishLineBoundaries(f1Car, finishLine)
       }
       
+      function lapDone() {
+        window.cancelAnimationFrame(race);
 
+        ctx.fillStyle = 'black';
+        ctx.fillRect(0, 0, 1015, 710);
+        ctx.fillStyle = 'white';
+        ctx.font = '40px sans-serif'
+        ctx.fillText('Lap Complete')
+      }
