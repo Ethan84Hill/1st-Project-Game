@@ -4,29 +4,16 @@ window.onload = () => {
     document.getElementById('start-now').onclick = () => {
       startGame();
     };
-    
-    function startGame() {
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        let race;
-        // const imgTrack = new Image();
-       // imgTrack.src = 'images/new track 1.png';
-        // ctx.drawImage(imgTrack, 0, 0, 1015, 710)
-        const frameRate = 1 /40;
-        const frameDelay = frameRate * 1000;
+}
 
-        // f1Car.vx += f1Car.ax;
-        // f1Car.vy += f1Car.ay;
-
-        // f1Car.xCord += f1Car.vx * frameRate * 100;
-        // f1Car.yCord += f1Car.vy * frameRate * 100;
-
-        const imgCar = new Image();
+    const imgCar = new Image();
        imgCar.src = 'images/F1_car.png'
         let f1Car = {
             xCord: 220,
             yCord: 620,
-            r: -1,
+            width: 60,
+            height: 30,
+            r: 0,
             vx: 0,
             vy: 0,
             ax: 0,
@@ -34,53 +21,112 @@ window.onload = () => {
             speedX: 0,
             speedY: 0,
             draw: function (){
-                ctx.drawImage(imgCar, 220, 620, 60, 30)
+                ctx.beginPath();
+                ctx.arc(this.xCord, this.yCord, 60, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.save();
+                ctx.translate(this.xCord, this.yCord);
+                ctx.rotate(this.r);
+                ctx.drawImage(imgCar, -10, -15, 60, 30)
+                ctx.restore();
             }
         }
-       
-    //    const imgCar = new Image();
-    //    imgCar.src = 'images/F1_car.png'
-    //  ctx.drawImage(imgCar, f1Car.xCord, f1Car.yCord, 60, 30)
-    //   window.addEventListener('keydown', function(event) {
-    //     ctx.clearRect(0, 0, 1015, 710)
-    //     // ctx.drawImage(imgTrack, 0, 0, 1015, 710)
-    //     ctx.drawImage(imgCar, f1Car.xCord, f1Car.yCord, 60, 30)
-    //     switch(event.code) {
-    //       case 'ArrowRight':
-    //         f1Car.xCord += 10;
-    //        break;
-    //       case 'ArrowLeft':
-    //         f1Car.xCord -= 10;
-    //         break;
-    //     case 'ArrowUp':
-    //         f1Car.yCord -= 10;
-    //         break;
-    //     case 'ArrowDown':
-    //         f1Car.yCord += 10;
-    //         break;
-    //     }
-    //   })
 
+       let race;
+       const frameRate = 1 / 60;
+        const frameDelay = frameRate * 1000;
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let w = canvas.width
+        let h = canvas.height
 
-      driveloop()
-
+    function startGame() {
+        driveloop()
     }
+
+    function updatePosition(car) {
+        car.vx += car.ax;
+        car.vy += car.ay;
+
+        car.xCord += car.vx * frameRate * 100;
+        car.yCord += car.vy * frameRate * 100;
+    }
+
+    function canvasBoundaries(car) {
+        if (car.xCord >= w) {
+            car.vx = 0
+        }
+        if (car.xCord <= 0) {
+            car.vx = 0
+        }
+        if (car.yCord >= h) {
+            car.vy = 0
+        }
+        if (car.yCord <= 0) {
+            car.vy = 0
+        }
+    }
+
+    function startFinishLineBoundaries(car, finish) {
+        if (
+            car.xCord < finish.xCord + finish.width &&
+            car.xCord + car.width > finish.xCord &&
+            car.yCord < finish.yCord + finish.height &&
+            car.yCord + car.height > finish.yCord
+          ) {
+            car.vy = 0;
+            car.vx = 0;
+          }
+    }
+
+    function railsBoundaries(car, rails) {
+        if (
+            car.xCord < rails.xCord + rails.width &&
+            car.xCord + car.width > rails.xCord &&
+            car.yCord < rails.yCord + rails.height &&
+            car.yCord + car.height > rails.yCord
+          ) {
+            car.vy *= -1;
+            car.vx *= -1;
+          }
+    }
+
+
+        const keys = [];
+     window.addEventListener("keydown", function (e) {
+         keys[e.which] = true;
+       });
+       window.addEventListener("keyup", function (e) {
+         keys[e.which] = false;
+       });
 
     function driveloop() {
         race = window.requestAnimationFrame(driveloop, canvas);
         ctx.clearRect(0, 0, 1015, 710)
-        ctx.drawImage(imgCar, f1Car.xCord, f1Car.yCord, 60, 30)
-        if ('ArrowRight') f1Car.r += 0.05;
-        if ('ArrowLeft') f1Car.r -= 0.05;
+        
+        if (keys[39]) {f1Car.r += 0.05;}
+        if (keys[37]) {f1Car.r -= 0.05;}
 
-        if ('ArrowUp') {
-            f1Car.ax = Math.cos(f1Car.r) * 0.05;
-            f1Car.ay = Math.sin(f1Car.r) * 0.05;
-        }
-
-        f1Car.draw();
+        if (keys[38]) {
+            if (f1Car.ax >= 0 || f1Car.ay >= 0) 
+            {f1Car.ax = -(Math.cos(f1Car.r) * 0.0006);
+            f1Car.ay = -(Math.sin(f1Car.r) * 0.0006);
+        } else {
+            f1Car.ax = 0
+            f1Car.ay = 0
+            }
+        } 
+        
+          if (keys[40]) {
+            f1Car.ax = Math.cos(f1Car.r) * 0.001;
+             f1Car.ay = Math.sin(f1Car.r) * 0.001;
+            } 
+        
+          f1Car.draw();
+         updatePosition(f1Car)
+         canvasBoundaries(f1Car)
+         // railsBoundaries(f1Car, rails)
+         // startFinishLineBoundaries(f1Car, finish)
       }
+      
 
-
-
-}
