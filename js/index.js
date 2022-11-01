@@ -36,60 +36,60 @@ window.onload = () => {
             x: 130,
             y: 155,
             w: 645,
-            h: 5,
+            h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(130, 155, 645, 5)
+                ctx.fillRect(130, 155, 645, 1)
             }
         }
         let railTwo = {
             x: 485,
             y: 155,
-            w: 5,
+            w: 1,
             h: 420,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(485, 155, 5, 420)
+                ctx.fillRect(485, 155, 1, 420)
             }
         }
         let railThree = {
             x: 130,
             y: 552,
             w: 355,
-            h: 5,
+            h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(130, 552, 355, 5)
+                ctx.fillRect(130, 552, 355, 1)
             }
         }
         let railFour = {
             x: 490,
             y: 568,
             w: 375,
-            h: 5,
+            h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(490, 568, 375, 5)
+                ctx.fillRect(490, 568, 375, 1)
             }
         }
         let railFive = {
             x: 0,
             y: 338,
             w: 325,
-            h: 10,
+            h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(0, 338, 325, 10)
+                ctx.fillRect(0, 338, 325, 1)
             }
         }
         let railSix = {
             x: 773,
             y: 302,
             w: 325,
-            h: 8,
+            h: 1,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(773, 302, 325, 8)
+                ctx.fillRect(773, 302, 325, 1)
             }
         }
 
