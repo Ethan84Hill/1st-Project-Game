@@ -123,7 +123,6 @@ window.onload = () => {
 
     function startGame() {
         driveloop()
-        lapTime()
     }
 
     function updatePosition(car) {
@@ -163,7 +162,6 @@ window.onload = () => {
             car.vy = 0;
             car.vx = 0;
             lapDone();
-            // lapTime();
           }
     }
 
@@ -211,7 +209,6 @@ window.onload = () => {
             } 
           ctx.globalAlpha = 1
           startTimer();
-          //lapTime();
           ctx.globalAlpha = 1
           f1Car.draw();
           ctx.globalAlpha = 0
