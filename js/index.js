@@ -114,7 +114,7 @@ window.onload = () => {
         }
 
        let race;
-       const frameRate = 1 / 60;
+       const frameRate = 1 / 40;
         const frameDelay = frameRate * 1000;
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
@@ -122,7 +122,8 @@ window.onload = () => {
         let h = canvas.height
 
     function startGame() {
-        driveloop()
+        driveloop();
+        startTimer();
     }
 
     function updatePosition(car) {
@@ -162,6 +163,7 @@ window.onload = () => {
             car.vy = 0;
             car.vx = 0;
             lapDone();
+            timerDone();
           }
     }
 
@@ -207,8 +209,8 @@ window.onload = () => {
             f1Car.ax = Math.cos(f1Car.r) * 0.001;
              f1Car.ay = Math.sin(f1Car.r) * 0.001;
             } 
-          ctx.globalAlpha = 1
-          startTimer();
+          //ctx.globalAlpha = 1
+          //startTimer();
           ctx.globalAlpha = 1
           f1Car.draw();
           ctx.globalAlpha = 0
@@ -242,15 +244,17 @@ window.onload = () => {
         ctx.fillStyle = 'white';
         ctx.font = '40px sans-serif';
         ctx.fillText('Lap Complete!', w/3, 100);
-        stopTimer();
       }
     
       let seconds = 0;
       let interval = null;
+      let timer;
 
       function lapTime() {
+        timer = window.requestAnimationFrame(lapTime, canvas);
+        // ctx.clearRect(0, 0, 1015, 710)
         seconds++;
-
+        
         let hrs = Math.floor(seconds / 3600);
         let mins = Math.floor((seconds - (hrs * 3600)) / 60);
         let secs = seconds % 60;
@@ -267,8 +271,13 @@ window.onload = () => {
         ctx.restore();
       }
 
+      function timerDone() {
+        window.cancelAnimationFrame(timer);
+        stopTimer();
+      }
+
       function startTimer() {
-        interval = setInterval(lapTime(), 1000)
+        interval = setInterval(lapTime, 1000)
       }
       function stopTimer() {
         clearInterval(interval)
