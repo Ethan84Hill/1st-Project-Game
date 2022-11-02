@@ -38,8 +38,8 @@ window.onload = () => {
             w: 600,
             h: 1,
             draw: function () {
-                ctx.fillStyle = 'black'
-                ctx.fillRect(160, 155, 600, 1)
+                ctx.fillStyle = 'red'
+                ctx.fillRect(160, 155, 600, 10)
             }
         }
         let railTwo = {
@@ -48,8 +48,8 @@ window.onload = () => {
             w: 1,
             h: 400,
             draw: function () {
-                ctx.fillStyle = 'black'
-                ctx.fillRect(485, 155, 1, 400)
+                ctx.fillStyle = 'blue'
+                ctx.fillRect(485, 155, 10, 400)
             }
         }
         let railThree = {
@@ -58,8 +58,8 @@ window.onload = () => {
             w: 300,
             h: 1,
             draw: function () {
-                ctx.fillStyle = 'black'
-                ctx.fillRect(150, 552, 300, 1)
+                ctx.fillStyle = 'yello'
+                ctx.fillRect(150, 552, 300, 10)
             }
         }
         let railFour = {
@@ -68,8 +68,8 @@ window.onload = () => {
             w: 300,
             h: 1,
             draw: function () {
-                ctx.fillStyle = 'black'
-                ctx.fillRect(500, 568, 300, 1)
+                ctx.fillStyle = 'pink'
+                ctx.fillRect(500, 568, 300, 10)
             }
         }
         let railFive = {
@@ -78,8 +78,8 @@ window.onload = () => {
             w: 300,
             h: 1,
             draw: function () {
-                ctx.fillStyle = 'black'
-                ctx.fillRect(0, 338, 300, 1)
+                ctx.fillStyle = 'purple'
+                ctx.fillRect(0, 338, 300, 10)
             }
         }
         let railSix = {
@@ -88,8 +88,8 @@ window.onload = () => {
             w: 300,
             h: 1,
             draw: function () {
-                ctx.fillStyle = 'black'
-                ctx.fillRect(773, 302, 300, 1)
+                ctx.fillStyle = 'green'
+                ctx.fillRect(773, 302, 300, 10)
             }
         }
         let finishLine = {
@@ -209,11 +209,11 @@ window.onload = () => {
             f1Car.ax = Math.cos(f1Car.r) * 0.001;
              f1Car.ay = Math.sin(f1Car.r) * 0.001;
             } 
-          //ctx.globalAlpha = 1
-          //startTimer();
+        ctx.globalAlpha = 1
+            drawTest();
           ctx.globalAlpha = 1
           f1Car.draw();
-          ctx.globalAlpha = 0
+          //ctx.globalAlpha = 0
           finishLine.draw();
           railOne.draw();
           railTwo.draw();
@@ -247,28 +247,12 @@ window.onload = () => {
       }
     
       let seconds = 0;
-      let interval = null;
-      let timer;
-
+      let interval;
+      let int;
       function lapTime() {
-        timer = window.requestAnimationFrame(lapTime, canvas);
-        // ctx.clearRect(0, 0, 1015, 710)
         seconds++;
-        
-        let hrs = Math.floor(seconds / 3600);
-        let mins = Math.floor((seconds - (hrs * 3600)) / 60);
-        let secs = seconds % 60;
-    
-        if (secs < 10) secs = '0' + secs;
-        if (mins < 10) mins = '0' + mins;
-        if (hrs < 10) hrs = '0' + hrs;
+        console.log(seconds, 'this is seconds')
 
-        ctx.save();
-        ctx.beginPath();
-        ctx.fillStyle = 'white';
-        ctx.font = '20px sans-serif';
-        ctx.fillText(`${hrs}:${mins}:${secs}`, 880, 30);
-        ctx.restore();
       }
 
       function timerDone() {
@@ -281,4 +265,15 @@ window.onload = () => {
       }
       function stopTimer() {
         clearInterval(interval)
+      }
+
+      function drawTest() {
+        let secs = seconds % 60;
+    
+        if (secs < 10) secs = '0' + secs;
+        let minutes = Math.floor(seconds / 60)
+        console.log('drawing')
+        ctx.fillStyle = 'white';
+         ctx.font = '20px sans-serif';
+         ctx.fillText(`${minutes}:${secs}`, 880, 30);
       }
