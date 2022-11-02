@@ -36,7 +36,7 @@ window.onload = () => {
             x: 160,
             y: 155,
             w: 600,
-            h: 1,
+            h: 10,
             draw: function () {
                 ctx.fillStyle = 'red'
                 ctx.fillRect(160, 155, 600, 10)
@@ -45,7 +45,7 @@ window.onload = () => {
         let railTwo = {
             x: 485,
             y: 155,
-            w: 1,
+            w: 10,
             h: 400,
             draw: function () {
                 ctx.fillStyle = 'blue'
@@ -56,7 +56,7 @@ window.onload = () => {
             x: 150,
             y: 552,
             w: 300,
-            h: 1,
+            h: 10,
             draw: function () {
                 ctx.fillStyle = 'yello'
                 ctx.fillRect(150, 552, 300, 10)
@@ -66,7 +66,7 @@ window.onload = () => {
             x: 500,
             y: 568,
             w: 300,
-            h: 1,
+            h: 10,
             draw: function () {
                 ctx.fillStyle = 'pink'
                 ctx.fillRect(500, 568, 300, 10)
@@ -76,7 +76,7 @@ window.onload = () => {
             x: 0,
             y: 338,
             w: 300,
-            h: 1,
+            h: 10,
             draw: function () {
                 ctx.fillStyle = 'purple'
                 ctx.fillRect(0, 338, 300, 10)
@@ -86,30 +86,32 @@ window.onload = () => {
             x: 773,
             y: 302,
             w: 300,
-            h: 1,
+            h: 10,
             draw: function () {
                 ctx.fillStyle = 'green'
                 ctx.fillRect(773, 302, 300, 10)
             }
         }
         let finishLine = {
+            // 300
             x: 300,
-            y: 588,
+            y: 570,
             w: 3,
-            h: 98,
+            h: 145,
             draw: function () {
                 ctx.fillStyle = 'white'
-                ctx.fillRect(300, 588, 3, 98)
+                ctx.fillRect(300, 570, 3, 145)
             }
         }
         let antiCheat = {
+            // 290
             x: 290,
-            y: 588,
+            y: 570,
             w: 1,
-            h: 95,
+            h: 145,
             draw: function () {
                 ctx.fillStyle = 'black'
-                ctx.fillRect(290, 588, 1, 98)
+                ctx.fillRect(290, 570, 1, 145)
             }
         }
 
@@ -213,7 +215,7 @@ window.onload = () => {
             drawTest();
           ctx.globalAlpha = 1
           f1Car.draw();
-          //ctx.globalAlpha = 0
+          ctx.globalAlpha = 0
           finishLine.draw();
           railOne.draw();
           railTwo.draw();
@@ -252,7 +254,6 @@ window.onload = () => {
       function lapTime() {
         seconds++;
         console.log(seconds, 'this is seconds')
-
       }
 
       function timerDone() {
